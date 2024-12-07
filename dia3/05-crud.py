@@ -62,6 +62,12 @@ while(opcion < 5):
         print("=" * ANCHO)
         print(" " * 10 + "[3] ACTUALIZAR ALUMNO")
         print("=" * ANCHO)
+        dni = input("INGRESE DNI DEL ALUMNO A ACTUALIZAR")
+        if dni in dic_alumnos:
+            print(f"ALUMNO A ACTUALIZAR {dic_alumnos[dni]['nombre']}")
+            nuevo_nombre = input('NOMBRE : ')
+            nuevo_dni = input('DNI  :')
+            nuevo_email = input('EMAIL')
     elif opcion == 4:
         print("=" * ANCHO)
         print(" " * 10 + "[4] ELIMINAR ALUMNO")
