@@ -9,6 +9,7 @@ CRUD
  - UPDATE
  - DELETE
 """
+cargar_alumnos('alumnos.txt')
 opcion = 0
 
 while(opcion < 5):
@@ -26,6 +27,7 @@ while(opcion < 5):
     elif opcion == 4:
         eliminar()
     elif opcion == 5:
+        grabar_alumnos('alumnos.txt')
         mostrar_mensaje("[5] SALIR")
     else:
         mostrar_mensaje("OPCIÓN INVÁLIDA!!!")
