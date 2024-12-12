@@ -1,3 +1,5 @@
+from matriculas.lib_alumnos import *
+
 import os
 from time import sleep
 
@@ -68,24 +70,10 @@ while(opcion < 5):
             nuevo_nombre = input('NOMBRE : ')
             nuevo_dni = input('DNI  :')
             nuevo_email = input('EMAIL')
-            dic_act_alumno = {
-                dni : {
-                    'nombre':nuevo_nombre,
-                    'email':nuevo_email
-                }
-            }
-            dic_alumnos.update(dic_act_alumno)
-            print("ALUMNO ACTUALIZADO CON EXITO")
     elif opcion == 4:
         print("=" * ANCHO)
         print(" " * 10 + "[4] ELIMINAR ALUMNO")
         print("=" * ANCHO)
-        dni = input("INGRES EL DNI DEL ALUMNO A ELIMINAR : ")
-        if dni in dic_alumnos:
-            dic_alumnos.pop(dni)
-            print("ALUMNO ELIMINADO")
-        else:
-            print("NO SE ENCONTRO EL ALUMNO")
     elif opcion == 5:
         print("=" * ANCHO)
         print(" " * 10 + "[5] SALIR")
