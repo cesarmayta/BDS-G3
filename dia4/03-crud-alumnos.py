@@ -9,33 +9,24 @@ CRUD
  - UPDATE
  - DELETE
 """
-dic_alumnos = {
-    '12345678':{
-        'nombre':'CESAR',
-        'email':'cesar@gmail.com'
-    }
-}
-
-ANCHO = 50
 opcion = 0
 
 while(opcion < 5):
     os.system("clear")
-    menu(ANCHO)
+    menu()
     opcion = int(input("INGRESE OPCION : "))
     os.system("clear")
     if opcion == 1:
-        dic_nuevo_alumno = registrar(ANCHO) 
-        dic_alumnos.update(dic_nuevo_alumno)
+        registrar()
     elif opcion == 2:
-        mostrar(ANCHO,dic_alumnos)
+        mostrar()
         input("Presion ENTER para continuar...")
     elif opcion == 3:
-        actualizar(ANCHO,dic_alumnos)
+        actualizar()
     elif opcion == 4:
-        eliminar(ANCHO,dic_alumnos)
+        eliminar()
     elif opcion == 5:
-        salir(ANCHO)
+        mostrar_mensaje("[5] SALIR")
     else:
-        mostrar_mensaje_invalida()
+        mostrar_mensaje("OPCIÓN INVÁLIDA!!!")
     sleep(1)
