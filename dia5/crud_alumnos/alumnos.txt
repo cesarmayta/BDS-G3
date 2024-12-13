@@ -1,0 +1,3 @@
+100,cesar,cesar@gmail.com
+200,ana,ana@gmail.com
+400,LAURA ZAPATA,LZAPATA@CODIGO.EDU.PE
