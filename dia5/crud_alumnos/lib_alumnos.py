@@ -1,4 +1,5 @@
 from tabulate import tabulate
+from colorama import Fore, Back, Style
 
 ANCHO = 20
 TABLE_STYLE = 'simple_grid'
@@ -41,16 +42,16 @@ def grabar_alumnos(file_name):
 
 
 def mostrar_mensaje(texto):
-    tabla = [[texto]]
+    tabla = [[f'{Fore.GREEN}{texto}{Style.RESET_ALL}']]
     print(tabulate(tabla,tablefmt=TABLE_STYLE,stralign="center"))
 
 def menu():
-    menu_principal = [["[1] REGISTRAR ALUMNO"],
-                      ["[2] MOSTRAR ALUMNOS"],
-                      ["[3] ACTUALIZAR ALUMNO"],
-                      ["[4] ELIMINAR ALUMNO"],
-                      ["[5] SALIR"]]
-    print(tabulate(menu_principal,headers=["GESTIÓN DE ALUMNOS"],tablefmt=TABLE_STYLE))
+    menu_principal = [[f"{Fore.GREEN}[1] REGISTRAR ALUMNO{Style.RESET_ALL}"],
+                      [f"{Fore.GREEN}[2] MOSTRAR ALUMNOS{Style.RESET_ALL}"],
+                      [f"{Fore.GREEN}[3] ACTUALIZAR ALUMNO{Style.RESET_ALL}"],
+                      [f"{Fore.GREEN}[4] ELIMINAR ALUMNO{Style.RESET_ALL}"],
+                      [f"{Fore.GREEN}[5] SALIR{Style.RESET_ALL}"]]
+    print(tabulate(menu_principal,headers=[f"{Fore.BLUE}GESTIÓN DE ALUMNOS{Style.RESET_ALL}"],tablefmt=TABLE_STYLE))
     
     
 
