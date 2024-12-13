@@ -1,4 +1,4 @@
-100cesar,cesar@gmail.com
-200ana,ana@gmail.com
-300carlos,carlos@gmail.com
-400VANESSA,vanessa@hotmail.com
+100,cesar,cesar@gmail.com
+200,ana,ana@gmail.com
+30,0carlos,carlos@gmail.com
+400,VANESSA,vanessa@hotmail.com
