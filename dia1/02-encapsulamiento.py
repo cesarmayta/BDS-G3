@@ -3,10 +3,13 @@ class Usuario:
     __password = 'qwerty123'
     
     def __init__(self):
-        pass 
+        pass
+    
+    def set_password(self,password):
+        self.__password = password
     
     def login(self,email,password):
-        if(self.__email == email and self__password == password):
+        if(self.__email == email and self.__password == password):
             print(f'Bienvenido {self.__email}')
         else:
             print('datos incorrectos')
@@ -16,5 +19,5 @@ email = input('Ingrese Email :')
 password = input('Ingrese Password : ')
 
 usuario = Usuario()
-usuario.__password = password
+usuario.set_password(password)
 usuario.login(email,password)
