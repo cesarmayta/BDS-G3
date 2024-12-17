@@ -28,27 +28,91 @@ class Bolita(pygame.sprite.Sprite):
             self.speed[0] = -self.speed[0]
                     
         self.rect.move_ip(self.speed)
+        
+class Paleta(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('imagenes/paleta.png')
+        self.rect = self.image.get_rect()
+        self.rect.midbottom = (ANCHO / 2,ALTO -20)
+        self.speed = [0,0]
+        
+    
+    def update(self,evento):
+        #buscar si se presiono el botón del derecha
+        if evento.key == pygame.K_LEFT and self.rect.left > 0:
+            self.speed = [-5,0]
+        elif evento.key == pygame.K_RIGHT and self.rect.right < ANCHO:
+            self.speed = [5,0]
+        else:
+            self.speed = [0,0]
+            
+        #mover el base a posición actual
+        self.rect.move_ip(self.speed)
+        
+class Ladrillo(pygame.sprite.Sprite):
+    def __init__(self,posicion):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('imagenes/ladrillo.png')
+        self.rect = self.image.get_rect()
+        self.rect.topleft = posicion
+        
+class Muro(pygame.sprite.Group):
+    def __init__(self,cantidad):
+        pygame.sprite.Group.__init__(self)
+
+        pos_x = 0
+        pos_y = 20
+        for i in range(cantidad):
+            ladrillo = Ladrillo((pos_x,pos_y))
+            self.add(ladrillo)
+            
+            pos_x += ladrillo.rect.width
+            if pos_x >= ANCHO:
+                pos_x = 0
+                pos_y += ladrillo.rect.height
+                        
       
 #creamos un reloj
 reloj = pygame.time.Clock()  
-bolita = Bolita()
+
 pantalla = pygame.display.set_mode((ANCHO,ALTO))
 pygame.display.set_caption("MI PRIMER VIDEOJUEGO")
+#ajustamos la repetición del evento de tecla presionada
+pygame.key.set_repeat(30)
 
-
+#objetos
+bolita = Bolita()
+jugador = Paleta()
+muro = Muro(50)
 
 while True:
     reloj.tick(60)
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             sys.exit()
+        elif evento.type == pygame.KEYDOWN:
+            jugador.update(evento)
             
     #actualizamos la posición de la bolita
     bolita.update()
+    
+    ###### COLISIONES ########
+    #colisión entre bolita y jugador
+    if pygame.sprite.collide_rect(bolita,jugador):
+        bolita.speed[1] = -bolita.speed[1]
+    
+    
+    ##########################
+    
             
     #pintamos el fondo de la pantalla
     pantalla.fill(color_fondo)
     #dibujamos la bolita en la pantalla
     pantalla.blit(bolita.image,bolita.rect)
+    #dibujamos el jugador en la pantalla
+    pantalla.blit(jugador.image,jugador.rect)
+    #dibujamos el muro
+    muro.draw(pantalla)
             
     pygame.display.flip()
