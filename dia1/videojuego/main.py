@@ -1,5 +1,6 @@
 import sys
 import pygame
+import time
 
 ANCHO = 640
 ALTO = 480
@@ -23,7 +24,8 @@ class Bolita(pygame.sprite.Sprite):
         
     def update(self):
         #evitamos que salga la bolita por debajo de la pantalla
-        if self.rect.bottom >= ALTO or self.rect.top <= 0:
+        #if self.rect.bottom >= ALTO or self.rect.top <= 0:
+        if self.rect.top <= 0:
             self.speed[1] = -self.speed[1]
         elif self.rect.right >= ANCHO or self.rect.left <= 0:
             self.speed[0] = -self.speed[0]
@@ -72,6 +74,22 @@ class Muro(pygame.sprite.Group):
             if pos_x >= ANCHO:
                 pos_x = 0
                 pos_y += ladrillo.rect.height
+                
+class MensajesJuego:
+    
+    def __init__(self):
+        self.fuente = pygame.font.SysFont('Arial',72)
+        self.color = (255, 255, 255)
+        
+    def game_over(self):
+        texto = self.fuente.render('GAME OVER',True,self.color)
+        texto_rect = texto.get_rect()
+        texto_rect.center = [ANCHO / 2, ALTO / 2]
+        pantalla.blit(texto,texto_rect)
+        pygame.display.flip()
+        pygame.mixer.Sound.play(sonido_game_over)
+        time.sleep(5)
+        sys.exit()
                         
       
 #creamos un reloj
@@ -86,11 +104,12 @@ pygame.key.set_repeat(30)
 bolita = Bolita()
 jugador = Paleta()
 muro = Muro(50)
+mensajes = MensajesJuego()
 
 #cargar sonidos del videojuego
 sonido_colision_paleta = pygame.mixer.Sound('sonidos/colision.ogg')
 sonido_colision_muro = pygame.mixer.Sound('sonidos/colision_muro.ogg')
-
+sonido_game_over = pygame.mixer.Sound('sonidos/game_over.ogg')
 
 while True:
     reloj.tick(60)
@@ -114,10 +133,11 @@ while True:
     if lista:
         pygame.mixer.Sound.play(sonido_colision_muro)
     
+    ############ EVALUAMOS ACCIONES #####################
+    if bolita.rect.top > ALTO:
+        mensajes.game_over()
     
-    ##########################
-    
-            
+    ######## DIBUJAMOS LOS OBJETOS EN LA PANTALLA #######      
     #pintamos el fondo de la pantalla
     pantalla.fill(color_fondo)
     #dibujamos la bolita en la pantalla
