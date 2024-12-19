@@ -6,6 +6,7 @@ ALTO = 480
 
 color_fondo = (0,0,64)
 
+pygame.init()
 ### CLASES PARA LOS OBJETOS DEL JUEGO ###
 class Bolita(pygame.sprite.Sprite):
     def __init__(self):
@@ -86,6 +87,11 @@ bolita = Bolita()
 jugador = Paleta()
 muro = Muro(50)
 
+#cargar sonidos del videojuego
+sonido_colision_paleta = pygame.mixer.Sound('sonidos/colision.ogg')
+sonido_colision_muro = pygame.mixer.Sound('sonidos/colision_muro.ogg')
+
+
 while True:
     reloj.tick(60)
     for evento in pygame.event.get():
@@ -101,6 +107,12 @@ while True:
     #colisión entre bolita y jugador
     if pygame.sprite.collide_rect(bolita,jugador):
         bolita.speed[1] = -bolita.speed[1]
+        pygame.mixer.Sound.play(sonido_colision_paleta)
+        
+    #colisión de bolita con el muro de ladrillos
+    lista = pygame.sprite.spritecollide(bolita,muro,True)
+    if lista:
+        pygame.mixer.Sound.play(sonido_colision_muro)
     
     
     ##########################
