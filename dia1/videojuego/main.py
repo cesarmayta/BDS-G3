@@ -47,6 +47,10 @@ class Paleta(pygame.sprite.Sprite):
             self.speed = [-5,0]
         elif evento.key == pygame.K_RIGHT and self.rect.right < ANCHO:
             self.speed = [5,0]
+        # elif evento.key == pygame.K_UP and self.rect.right > 0:
+        #     self.speed = [0,-5]
+        # elif evento.key == pygame.K_DOWN and self.rect.right < ALTO:
+        #     self.speed = [0,5]
         else:
             self.speed = [0,0]
             
