@@ -85,6 +85,14 @@ class MensajesJuego:
         self.fuente = pygame.font.SysFont('Arial',72)
         self.color = (255, 255, 255)
         
+    def mostrar_puntos(self,puntos):
+        fuente_puntos = pygame.font.SysFont('Consolas',20)
+        texto = fuente_puntos.render(str(puntos).zfill(5),True,self.color)
+        texto_rect = texto.get_rect()
+        texto_rect.topleft = [0,0]
+        pantalla.blit(texto,texto_rect)
+        
+        
     def game_over(self):
         texto = self.fuente.render('GAME OVER',True,self.color)
         texto_rect = texto.get_rect()
@@ -109,6 +117,7 @@ bolita = Bolita()
 jugador = Paleta()
 muro = Muro(50)
 mensajes = MensajesJuego()
+puntos = 0
 
 #cargar sonidos del videojuego
 sonido_colision_paleta = pygame.mixer.Sound('sonidos/colision.ogg')
@@ -136,6 +145,7 @@ while True:
     lista = pygame.sprite.spritecollide(bolita,muro,True)
     if lista:
         pygame.mixer.Sound.play(sonido_colision_muro)
+        puntos += 10
     
     ############ EVALUAMOS ACCIONES #####################
     if bolita.rect.top > ALTO:
@@ -144,6 +154,8 @@ while True:
     ######## DIBUJAMOS LOS OBJETOS EN LA PANTALLA #######      
     #pintamos el fondo de la pantalla
     pantalla.fill(color_fondo)
+    #mostrarmos puntos
+    mensajes.mostrar_puntos(puntos)
     #dibujamos la bolita en la pantalla
     pantalla.blit(bolita.image,bolita.rect)
     #dibujamos el jugador en la pantalla
