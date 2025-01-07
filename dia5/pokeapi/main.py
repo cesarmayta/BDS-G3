@@ -12,3 +12,8 @@ if __name__ == '__main__':
         print(f"Weight : {pokemon_detail['weight']}")
         print(f"Base Exp : {pokemon_detail['base_experience']}")
         print("="*50)
+        
+    respuesta = input('Desea guardar los pokemons en la base de datos? (s/n) : ')
+    if respuesta.lower() == 's':
+        pokeapi.insert_pokemon_to_db(pokemons['results'])
+        print(f"Se han guardado {len(pokemons['results'])} pokemons en la base de datos")
