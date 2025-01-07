@@ -11,3 +11,10 @@ if __name__ == "__main__":
         print(f"Telefono : {usuario['phone']}")
         print(f"Foto : {usuario['picture']['large']}")
         print("="*50)
+        
+    respuesta = input("Desea guardar los datos en la base de datos? (s/n): ")
+    if respuesta.lower() == 's':
+        api.insert_users_to_db(usuarios)
+        print("Datos guardados en la base de datos.")
+    else:
+        print("Datos no guardados.")
