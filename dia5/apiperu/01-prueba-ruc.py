@@ -1,6 +1,7 @@
 import requests
+import os
 
-TOKEN = ''
+TOKEN = os.environ['TOKEN']
 API_URL = 'https://apiperu.dev/api/ruc'
 
 ruc = input('Ingrese el RUC: ')
