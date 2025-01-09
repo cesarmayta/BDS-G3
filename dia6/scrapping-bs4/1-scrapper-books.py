@@ -11,8 +11,10 @@ if response.status_code == 200:
     for book in books:
         title = book.find('h3').find('a')['title']
         price = book.find('p',class_='price_color').get_text()
+        image = book.find('img')['src']
         print(title)
         print(price)
+        print(image)
         print('----------------------')
 else:
     print(f'Error: {response.status_code}')
