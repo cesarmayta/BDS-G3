@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  etl:
+    build: .
+    container_name: etl_container
+    depends_on:
+      - db
+    networks:
+      - etl_network
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: datag3
+    ports:
+      - "3316:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - etl_network
+
+networks:
+  etl_network:
+
+volumes:
+  mysql_data:

@@ -8,7 +8,7 @@ def task_load_offers_baseline(offers):
         conn = mysql.connector.connect(
             user='root',
             password='root',
-            host='localhost',
+            host='db',
             database='datag3'
         )
         cursor = conn.cursor()
