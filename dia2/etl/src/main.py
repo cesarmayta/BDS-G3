@@ -1,5 +1,4 @@
 from prefect import flow
-from tasks.task import (task_primera_tarea)
 from tasks.task_extract_linkedin import (
     task_extract_linkedin)
 from tasks.task_load_offers import (

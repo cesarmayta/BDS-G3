@@ -9,7 +9,7 @@ def task_load_offers_baseline(offers):
             user='root',
             password='root',
             host='localhost',
-            database='db_codigo'
+            database='datag3'
         )
         cursor = conn.cursor()
 
