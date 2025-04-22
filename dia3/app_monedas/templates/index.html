@@ -1,0 +1,12 @@
+<h1><center>PAGINA WEB DE {{nombre}}</center></h1>
+<h2>Convertidor de nomedas</h2>
+<form method="POST">
+    <label for="origen">Ingrese Monto en Soles:</label>
+    <input type="number" name="origen" id="origen" required>
+    <br><br>
+    <input type="submit" value="Convertir A Dolares">
+</form>
+{% if destino  > 0 %}
+    <h2>Resultado de la conversion:</h2>
+    <p>El monto en dolares es: {{destino}}</p>
+{% endif%}
