@@ -1,0 +1,9 @@
+<h2>CUANTO CUESTA UN DEPARTAMENTO POR EL NRO DE HABITACIONES?</h2>
+<form method="POST">
+    <label for="rooms">Nro de Habitaciones:</label><br>
+    <input type="number" id="rooms" name="rooms" required><br><br>
+    <button type="submit">Calcular</button>
+</form>
+{% if prediction > 0 %}
+    <h2>El precio de un deparamento con {{rooms}} habitaciones es  ${{ prediction }}</h2>
+{% endif %}
