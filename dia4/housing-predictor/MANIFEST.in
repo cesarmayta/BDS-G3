@@ -1,0 +1,2 @@
+include README.md
+recursive-include housing_predictor/model *.pkl
