@@ -1,6 +1,7 @@
 from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from model import HousingModel
 
 
 app = Flask(__name__)
@@ -44,6 +45,10 @@ def set_data():
     rooms = request.json['rooms']
     new_housing = Housing(rooms)
     
+    #calculamos el precio de la vivienda
+    hmodel = HousingModel()
+    price = hmodel.predict(rooms)
+    new_housing.price = price
     #insertamos el nuevo registro en la base de datos
     db.session.add(new_housing)
     db.session.commit()
@@ -89,7 +94,10 @@ def get_data_id(id):
 def update_data(id):
     data = Housing.query.get(id) # select * from housing where id = id
     rooms = request.json['rooms']
-    price = request.json['price']
+    
+    hmodel = HousingModel()
+    price = hmodel.predict(rooms)
+    
     data.rooms = rooms
     data.price = price
     db.session.commit()
