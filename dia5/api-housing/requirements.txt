@@ -6,3 +6,4 @@ mysqlclient
 joblib
 numpy
 scikit-learn
+flask-cors
