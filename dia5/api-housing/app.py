@@ -72,4 +72,35 @@ def get_data():
     
     return jsonify(context), 200
 
+@app.route('/housing/<int:id>', methods=['GET'])
+def get_data_id(id):
+    data = Housing.query.get(id) # select * from housing where id = id
+    data_schema = HousingSchema()
+    
+    context = {
+        'status': True,
+        'message': 'Registro obtenido',
+        'content': data_schema.dump(data)
+    }
+    
+    return jsonify(context), 200
+
+@app.route('/housing/<int:id>', methods=['PUT'])
+def update_data(id):
+    data = Housing.query.get(id) # select * from housing where id = id
+    rooms = request.json['rooms']
+    price = request.json['price']
+    data.rooms = rooms
+    data.price = price
+    db.session.commit()
+    
+    data_schema = HousingSchema()
+    context = {
+        'status': True,
+        'message': 'Registro actualizado',
+        'content': data_schema.dump(data)
+    }
+    
+    return jsonify(context), 200
+
 app.run(debug=True)
