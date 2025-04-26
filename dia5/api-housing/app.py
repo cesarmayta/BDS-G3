@@ -31,4 +31,20 @@ def index():
     
     return jsonify(context)
 
+@app.route('/housing', methods=['POST'])
+def set_data():
+    rooms = request.json['rooms']
+    new_housing = Housing(rooms)
+    
+    #insertamos el nuevo registro en la base de datos
+    db.session.add(new_housing)
+    db.session.commit()
+    
+    context = {
+        'status':True,
+        'message': 'Registro creado',
+    }
+    
+    return jsonify(context, 201)
+
 app.run(debug=True)
