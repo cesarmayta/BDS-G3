@@ -18,8 +18,12 @@ class Housing(db.Model):
         return Housing.query.get(id)
     
     def save(self):
-        db.session.add(self)
+        
+        if not self.id:
+            db.session.add(self)
         db.session.commit()
+        
+    
         
     def delete(self):
         db.session.delete(self)
