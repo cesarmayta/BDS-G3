@@ -1,1 +1,94 @@
-<h1>MI APP WEB DE ML</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Management</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Housing Management</h1>
+        </header>
+
+        <section class="form-container">
+            <h2>Add New Housing</h2>
+            <form id="housing-form">
+                <div class="form-group">
+                    <label for="rooms">Number of Rooms:</label>
+                    <input type="number" id="rooms" name="rooms" min="1" required>
+                </div>
+                <div class="form-group">
+                    <p class="note">Note: Price will be calculated automatically</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Housing</button>
+            </form>
+        </section>
+
+        <section class="housing-list">
+            <h2>Housing List</h2>
+            <div class="table-container">
+                <table id="housing-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Rooms</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="housing-data">
+                        <!-- Housing data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="no-data-message" class="hidden">
+                <p>No housing data available.</p>
+            </div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading data...</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Housing</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label for="edit-rooms">Number of Rooms:</label>
+                    <input type="number" id="edit-rooms" name="rooms" min="1" required>
+                </div>
+                <div class="form-group">
+                    <p class="note">Note: Price will be calculated automatically</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Housing</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this housing entry?</p>
+            <div class="modal-actions">
+                <button id="confirm-delete" class="btn btn-danger">Delete</button>
+                <button id="cancel-delete" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div id="toast-message"></div>
+    </div>
+
+    <script src="{{ url_for('static',filename='script.js')}}"></script>
+</body>
+</html>
