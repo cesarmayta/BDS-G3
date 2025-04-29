@@ -1,5 +1,5 @@
 from utils import db
-
+from ml_models.housing import HousingModel
 
 class Housing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +18,8 @@ class Housing(db.Model):
         return Housing.query.get(id)
     
     def save(self):
+        ml_housing = HousingModel()
+        self.price = ml_housing.predict(self.rooms)
         
         if not self.id:
             db.session.add(self)

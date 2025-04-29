@@ -4,3 +4,8 @@ flask-sqlalchemy
 flask-marshmallow
 marshmallow-sqlalchemy
 mysqlclient
+
+#para ml
+joblib
+numpy
+scikit-learn
