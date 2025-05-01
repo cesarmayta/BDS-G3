@@ -1,4 +1,0 @@
-joblib
-numpy
-scikit-learn
-housing_predictor-0.1-py3-none-any.whl

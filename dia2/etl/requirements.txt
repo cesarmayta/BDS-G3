@@ -1,4 +1,0 @@
-prefect
-requests
-bs4
-mysql-connector-python
