@@ -5,6 +5,7 @@ flask-sqlalchemy
 flask-marshmallow
 marshmallow-sqlalchemy
 mysqlclient
+python-dotenv
 
 #car prediction dependencies
 joblib
