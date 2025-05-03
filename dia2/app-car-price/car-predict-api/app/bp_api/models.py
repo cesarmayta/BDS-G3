@@ -1,4 +1,5 @@
 from utils.db import db
+from car_predictor import CarPricePredictor
 
 class Car(db.Model):
     __tablename__ = 'car'
@@ -14,5 +15,25 @@ class Car(db.Model):
         self.cylinders = cylinders
         self.year = year
         self.price = 0
+        
+    @staticmethod
+    def get_all():
+        return Car.query.all()
+
+    @staticmethod
+    def get_by_id(id):
+        return Car.query.get(id)
+    
+    def save(self):
+        ml_car = CarPricePredictor()
+        self.price = ml_car.predict(self.cylinders, self.year)
+        
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
         
     
