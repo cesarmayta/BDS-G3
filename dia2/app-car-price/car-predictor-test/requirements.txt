@@ -1,0 +1,4 @@
+joblib
+numpy
+scikit-learn
+car_predictor-0.1-py3-none-any.whl
