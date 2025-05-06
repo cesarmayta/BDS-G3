@@ -1,0 +1,15 @@
+#flask dependencies
+flask
+flask-restful
+flask-sqlalchemy
+flask-marshmallow
+Flask-Migrate
+marshmallow-sqlalchemy
+mysqlclient
+python-dotenv
+
+#car prediction dependencies
+joblib
+numpy
+scikit-learn
+./dependencies/car_predictor-0.1-py3-none-any.whl
