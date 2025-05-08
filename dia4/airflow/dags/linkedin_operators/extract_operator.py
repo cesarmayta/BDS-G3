@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 class LinkedinExtractOperator(BaseOperator):
 
-    def __init__(self, skill: str, **kwargs):
+    def __init__(self, skill: str,**kwargs):
         super().__init__(**kwargs)
         self.skill = skill
         self.base_url = "https://www.linkedin.com/jobs/search/?currentJobId=809309445&keywords="

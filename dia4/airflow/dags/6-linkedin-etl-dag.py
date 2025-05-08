@@ -1,6 +1,7 @@
 from airflow import DAG
 import pendulum
-from linkedin_operators import LinkedinExtractOperator
+from linkedin_operators.extract_operator import LinkedinExtractOperator
+from linkedin_operators.load_operator import LoadOffersOperator
 
 
 with DAG(
@@ -14,6 +15,13 @@ with DAG(
 
     extract_task = LinkedinExtractOperator(
         task_id='extract',
-        skill='python',
-        provide_context=True,
+        skill='python'
     )
+    
+    load_task = LoadOffersOperator(
+        task_id='load',
+        offers_key='linkedin_offers',
+        mode='baseline'
+    )
+    
+    extract_task >> load_task
