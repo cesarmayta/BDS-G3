@@ -5,7 +5,7 @@ from airflow.operators.python import PythonOperator
 
 
 with DAG(
-    dag_id="python_etl_dag",
+    dag_id="5-etl-python-dag",
     schedule_interval="@daily",
     description="ETL simple con python operator",
     start_date=pendulum.datetime(2025, 1, 1, tz="UTC"),
