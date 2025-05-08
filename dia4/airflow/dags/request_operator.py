@@ -27,4 +27,5 @@ class RequestOperator(BaseOperator):
                 users.append(dict_usuario)
         else:
             print(f"algo salio mal {response.status_code}")
+        print(users)
         return users
