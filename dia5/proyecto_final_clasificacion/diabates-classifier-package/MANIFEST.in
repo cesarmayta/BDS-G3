@@ -1,0 +1,2 @@
+include README.md
+recursive-include diabetes_classifier/ml-model *.pkl
