@@ -25,6 +25,12 @@ class Diabetes(db.Model):
     def save(self):
         ml_diabetes = DiabetesClassifier()
         self.is_diabetic = ml_diabetes.predict(self.glucose, self.bmi, self.age)
-        db.session.add(self)
+        
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
         
