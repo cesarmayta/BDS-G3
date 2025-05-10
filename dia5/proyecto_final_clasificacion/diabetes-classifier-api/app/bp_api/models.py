@@ -9,14 +9,22 @@ class Diabetes(db.Model):
     bmi = db.Column(db.Double, nullable=False)
     is_diabetic = db.Column(db.Boolean, nullable=False)
     
-    def __init__(self, glucose, age, bmi):
+    def __init__(self, glucose, bmi, age):
         self.glucose = glucose
         self.age = age
         self.bmi = bmi
         
+    @staticmethod
+    def get_all():
+        return Diabetes.query.all()
+
+    @staticmethod
+    def get_by_id(id):
+        return Diabetes.query.get(id)
+        
     def save(self):
         ml_diabetes = DiabetesClassifier()
-        self.is_diabetic = ml_diabetes.predict(self.glucose, self.age, self.bmi)
+        self.is_diabetic = ml_diabetes.predict(self.glucose, self.bmi, self.age)
         db.session.add(self)
         db.session.commit()
         
