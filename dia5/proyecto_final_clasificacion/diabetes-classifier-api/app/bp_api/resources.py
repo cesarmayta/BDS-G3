@@ -1,6 +1,7 @@
 from flask_restful import Resource,Api
 from flask import request
 from . import bp_api
+from .models import Diabetes
 
 
 api = Api(bp_api)
