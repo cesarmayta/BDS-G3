@@ -1,0 +1,15 @@
+#FLASK DEPENDENCIES
+flask
+flask-restful
+flask-sqlalchemy
+flask-marshmallow
+Flask-Migrate
+marshmallow-sqlalchemy
+mysqlclient
+python-dotenv
+
+#MODEL DEPENDENCIES
+joblib
+pandas
+
+./dependencies/diabetes_classifier-0.1-py3-none-any.whl
